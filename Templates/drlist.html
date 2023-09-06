@@ -1,0 +1,88 @@
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Doctor List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      
+    }
+    
+    .doctor-card {
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 25px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top:20px;
+    }
+    
+    .doctor-profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+    }
+    
+    .doctor-name {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    
+    .doctor-email {
+      color: #999;
+      margin-bottom: 5px;
+    }
+    
+    .doctor-type {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    .book-button {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center text-info .ml-1">Doctors List</h1>
+  <div class="row">
+    {{Data1.FirstName}} {{Data1.LastName}}
+
+    {% for i in Result %}
+    <div class="col-md-4">
+        
+      <div class="doctor-card">
+      <center>  <img src="{{i.ProfilePicture.url}}" alt="{{ i.UserName }}'s Profile Image" class="doctor-profile-pic">
+        <h2 class="doctor-name">Dr. {{i.FirstName}} {{i.LastName}} </h2>
+        <p class="doctor-email">{{i.Email}}</p>
+        <p class="doctor-type">{{i.UserType}}</p>
+        <div class="book-button">
+          <a class="btn btn-primary" href="bookappoint/{{i.UserID}}">Book Appointment</a>
+          {% comment %} <a class="btn btn-success" href="{% url 'checkview' LoginName=i.UserName %}">Chat Us</a> {% endcomment %}
+          {% comment %} <a class="btn btn-success" href="checkview/{{LoginName=i.UserName}}">Chat Us</a> {% endcomment %}
+          {% comment %} <a class="btn btn-success" href="{% url 'checkview' ChatName=i.UserName %}">Chat Us</a> {% endcomment %}
+          <a class="btn btn-success" href="checkview/{{i.UserName }}">Chat Us</a>
+          {% comment %} <a class="btn btn-success" href="/chat">Chat</a> {% endcomment %}
+        </div>
+        
+      </div>
+      
+    </div>
+    {%endfor%}
+  </div>
+  
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

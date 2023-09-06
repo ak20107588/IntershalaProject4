@@ -1,0 +1,106 @@
+{%include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Doctors Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+  {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* Custom styles */
+        .card {
+            margin: 20px;
+        }
+        .card-img-top {
+            width: 300px;
+            height: 200px;
+            align-self: center;
+            
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <h3 class="text-center text-info">All Blogs </h3>
+
+
+         
+    
+            <form method="get" action="filter_items" >
+                {% csrf_token %}
+                <label for="categorySelect">Select a Category:</label>
+                <select id="categorySelect" name="category">                 
+                        <option value="">All</option>
+                        <option value="Immunization">Immunization</option>
+                        <option value="Covid19">Covid 19</option>
+                        <option value="Heart_Disease">Heart Disease</option>
+                        <option value="Mental_Health">Mental Health</option>
+                        
+                
+                </select>
+                <button class="btn btn-primary" type='submit'  >Filter</button>
+            </form>
+
+            <div class="container mt-5 row md-4">
+            
+            {% for Result in Data %}
+            <div class="col-md-4">
+                <div class="card">
+                    
+                    <img src="{{Result.BlogImages.url}}" class="card-img-top img-thumbnail" alt="Card Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Title: {{Result.Title}}</h5>
+                        <p class="card-text">Category: {{Result.Category}}</p>
+                        <p class="card-text">Summary: {{ Result.Summary|slice:":15" }}...</p>
+                        <p class="card-text">Content: {{Result.Content|slice:":15" }}...</p>
+                        <a href="blogdetail/{{Result.id}}" class="btn btn-primary">Read More</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Add more cards as needed -->
+            {% endfor %}
+            
+        </div>
+        
+
+       {% comment %} <h2 class="text-center text-primary display-flex"> No Blog Created </h2>   {% endcomment %}
+
+        
+    </div>
+
+    {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    {% comment %} <script>
+        $(document).ready(function() {
+            $('#OnFilterCategory').click(function() {
+                var selectedCategory = $('#categorySelect').val();
+                
+                // Make an AJAX request to the Django backend
+                $.ajax({
+                  url: '/get_items/',  // Replace with your URL for getting items
+                  type:'get',
+                  data: { category: selectedCategory },
+                  success: function(data) {
+                    // Update the itemList div with the retrieved items
+                    $('#itemList').html(data);
+                  }
+                });
+              });
+        });
+    </script>
+     {% endcomment %}
+    {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

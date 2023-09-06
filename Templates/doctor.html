@@ -1,0 +1,79 @@
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel = "stylesheet" 
+         href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+         integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+         crossorigin = "anonymous">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .user-details {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background-color: #fff;
+        }
+
+      
+
+        .user-details{
+            margin-top:20px;
+        }
+
+        .user-details h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    
+     
+
+    <div class="user-details">
+        <h3 class="text-primary text-center">Doctor Details </h3>
+        <div class="text-center">
+          
+            <img src="profilepicture/{{request.session.ProfilePicture}}" class="rounded-circle"  width = "200" height = "200" alt="User Profile">
+            
+
+        </div>
+        <h2 class="text-center text-success">Dr.{{request.session.FirstName}} {{request.session.LastName}}</h2>
+        <p><strong>Email:</strong> {{request.session.Email}}</p>
+        <p><strong>Role:</strong> {{request.session.UserType}}</p>
+        <p><strong>Address:</strong> {{request.session.Address}}</p>
+        <p><strong>Password:</strong> {{request.session.Password}} </p>
+
+    </div>
+
+    <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+         integrity = "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+         crossorigin = "anonymous">
+      </script>
+      
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+         integrity = "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+         crossorigin = "anonymous">
+      </script>
+      
+      <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+         integrity = "sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+         crossorigin = "anonymous">
+      </script>
+
+
+
+    
+</body>
+</html>

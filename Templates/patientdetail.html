@@ -1,0 +1,59 @@
+{%include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient List</title>
+    <!-- Include Bootstrap CSS -->
+    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> {% endcomment %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-primary .ml-1">Patient Details</h1>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Profile Picture</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>User Type</th>
+                    <th>Chat </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Replace this loop with your Django template tags -->
+                {% for user in Result %}
+                <tr>
+                    <td>{{ user.FirstName }} {{ user.LastName }}</td>
+                    <td>
+                        {% if user.ProfilePicture.url %}
+                            <img src="{{ user.ProfilePicture.url }}" alt="{{ user.UserName }}'s Profile Image" class="img-thumbnail" width="100">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                    <td>{{ user.UserName }}</td>
+                    <td>{{ user.Email }}</td>
+                    <td>{{ user.Address }}</td>
+                    <td>{{ user.UserType }}</td>
+                    {% comment %} <td><a class="btn btn-success" href="{% url 'chat' recipient_id=user.UserID %}">Chat</a> </td> {% endcomment %}
+                    {% comment %} <td><a class="btn btn-success" href="checkview/{{user.UserName}}">Chat Us</a> </td> {% endcomment %}
+                   <td> <a class="btn btn-success" href="checkview/{{user.UserName }}">Chat Us</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor-Patient Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% comment %} <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .message .sender-name {
+            font-weight: bold;
+        }
+
+        .message .message-content {
+            background-color: #e4e4e4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .message.patient {
+            text-align: left;
+        }
+
+        .message.doctor {
+            text-align: right;
+        }
+
+        .message-form {
+            margin-top: 20px;
+        }
+    </style> {% endcomment %}
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .message-container {
+            max-height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .message.sender {
+            background-color: #e2f0f9;
+            text-align: right;
+        }
+        .message.receiver {
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        .message-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .send-button {
+            width: 50%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    {% comment %} <div class="container mt-5">
+        <div class="chat-container">
+            <h2>Let's Chat with {{recipient.FirstName}}</h2>
+            <ul class="message-list">
+                {% for message in messages %}
+                <!-- Messages will be displayed here -->
+                <li class="message doctor">
+                    <span class="sender-name">{{ message.SenderName }} :</span>
+                    <div class="message-content">{{ message.content }}.</div>
+                    <small class="text-bg-secondary">{{message.timestamp}}</small>
+                </li>
+                {%endfor%} {% endcomment %}
+                
+                {% comment %} <li class="message doctor">
+                    <span class="sender-name">Doctor:</span>
+                    <div class="message-content">Sure, go ahead and ask your question.</div>
+                </li> {% endcomment %}
+                <!-- Add more messages here -->
+            {% comment %} </ul>
+            <form class="message-form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea class="form-control" name="message_content" rows="3" placeholder="Type your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div> {% endcomment %}
+
+    
+
+
+    <div class="container">
+        <h2>Chat with {{recipient.FirstName}}</h2>
+        <div class="message-container">
+            {% for message in messages %}
+            <div class="message sender">
+                <span class="sender-name">{{ message.SenderName }} :</span>
+                    <div class="message-content">{{ message.content }}.</div>
+                    <small class="text-bg-secondary">{{message.timestamp}}</small>
+            </div>
+            {% comment %} <div class="message receiver">
+                <span class="sender-name">{{ message.ReceiverName }} :</span>
+                <div class="message-content">{{ message.content }}.</div>
+                <small class="text-bg-secondary">{{message.timestamp}}</small>
+            </div> {% endcomment %}
+            {%endfor%}
+            <!-- More messages go here -->
+        </div>
+        <form class="message-form" method="post">
+            {% csrf_token %}
+        <textarea class="message-input" name="message_content" id="message-input" placeholder="Type your message..."></textarea>
+       <center> <button type="submit" class="send-button btn-sm" >Send</button> </center>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("send-button").addEventListener("click", function() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value;
+            messageInput.value = "";
+
+            // Create a new message element
+            const messageElement = document.createElement("div");
+            messageElement.className = "message sender";
+            messageElement.innerText = message;
+
+            // Append the message to the container
+            const messageContainer = document.querySelector(".message-container");
+            messageContainer.appendChild(messageElement);
+
+            // Scroll to the bottom of the container
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        });
+    </script>
+
+
+
+</body>
+</html>

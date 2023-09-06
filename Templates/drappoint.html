@@ -1,0 +1,77 @@
+{%include 'navbar.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Appointment Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f4f4f4;
+    }
+    
+    .appointment-card {
+      margin: 20px auto;
+      width:400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .detail-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    .detail-label {
+      font-weight: bold;
+    }
+    
+    .detail-value {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+   
+    
+<div class="container">
+  <div class="row"> 
+    {% for j in Data %}
+    
+    <div class="col-md-6">
+      <div class="appointment-card">
+        <h2 class="detail-title">Patient Appointment Details</h2>
+
+        
+       
+        
+        <p><span class="detail-label">Patient Name:</span> <span class="detail-value">{{j.PatientName}}</span></p>
+        <p><span class="detail-label">Appointment Date:</span> <span class="detail-value">{{j.AppointDate}}</span></p>
+        <p><span class="detail-label"> Appointment Start Time:</span> <span class="detail-value">{{j.AppointStart}}</span></p>
+
+        <p><span class="detail-label">Appointment End Time:</span> <span class="detail-value">{{j.AppointEnd}}</span></p>        
+
+        
+    </div>
+    </div>
+ 
+    {%endfor%}
+    
+
+  </div>
+</div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

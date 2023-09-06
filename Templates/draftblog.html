@@ -1,0 +1,58 @@
+{%include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        .card {
+            margin: 20px;
+        }
+        .card-img-top {
+            width: 300px;
+            height: 200px;
+            align-self: center;
+            
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <h3 class="text-center text-success"> Draft Blogs </h3>
+
+            {% for Result in Data %}
+            <div class="col-md-4">
+                <div class="card">
+                    
+                    <img src="{{Result.BlogImages.url}}" class="card-img-top img-thumbnail" alt="Card Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Title: {{Result.Title}}</h5>
+                        <p class="card-text">Category: {{Result.Category}}</p>
+                        <p class="card-text">Summary: {{ Result.Summary|slice:":15" }}...</p>
+                        <p class="card-text">Content: {{Result.Content|slice:":15" }}...</p>
+                        <a href="blogdetail/{{Result.id}}" class="btn btn-primary">Read More</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Add more cards as needed -->
+            {% endfor %}
+        </div>
+        {% comment %} {%else%}
+
+      <h2 class="text-center text-primary display-flex"> No Blog Created </h2>
+
+        {%endif%} {% endcomment %}
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

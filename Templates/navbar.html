@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        {%block content%}
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Health Sahara</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+               {%if request.session.user_type %} 
+                <li class="nav-item active">
+                  <a class="nav-link" href="/doctor">Home <span class="sr-only">(current)</span></a>
+                </li>
+                {%else%}
+                <li class="nav-item active">
+                  <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+                </li>
+                {%endif%} 
+               
+                
+                 
+                {% if request.session.user_type %} 
+                <li class="nav-item active">
+                  <a class="nav-link" href="/blog">Create Blog</a>
+                </li>
+              {%endif%} 
+                
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/allblogs">All Blog </a>
+                  </li>
+                  
+                  {% if request.session.user_type %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/draftblog">Draft Blogs</a>
+                  </li>
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/patientdetail">Patient Details</a>
+                  </li>
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/drappoint">Patient Appointment</a>
+                  </li>
+
+                  {%endif%} 
+
+                  {% if request.session.user_type1 %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/drlist">Doctor List</a>
+                  </li>
+                 {% comment %} {% endif %}
+
+                 
+                 {% if request.session.PatientID %} {% endcomment %}
+                 <li class="nav-item active">
+                   <a class="nav-link" href="/appointdetail">Appointment Details</a>
+                 </li>
+                {% endif %}
+
+
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+              
+                <a class="btn btn-danger float-right" href="/logout">Logout</a>
+              </form>
+            </div>
+          </nav>
+
+
+          {% endblock %}
+
+    </body>
+    </html>
